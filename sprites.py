@@ -59,25 +59,13 @@ class Mob(Sprite):
         self.acc = vec(0,0)
         self.cofric = 0.1
         self.canjump = False
-    def behavior(self):
-        self.acc.y = MOB_ACC
-        self.acc.x = MOB_ACC
-        if self.rect.x > WIDTH:
-            self.acc.x *= -1
+    def behavior(self): 
+        if self.rect.x > WIDTH or self.rect.x < 0:
             self.vel.x *= -1
-        if self.rect.x < 0:
-            self.acc.x *= -1
-            self.vel.x *= -1
-        if self.rect.y < 0:
-            self.acc.y *= -1
-            self.vel.y *= -1
-        if self.rect.y > HEIGHT:
-            self.acc.y *= -1
+        if self.rect.y > HEIGHT or self.rect.y < 0:
             self.vel.y *= -1
     def update(self):
-        self.acc = self.vel * MOB_FRICTION 
         self.behavior()
-        self.vel += self.acc
-        self.pos += self.vel + 0.5 * self.acc
+        self.pos += self.vel
         self.rect.center = self.pos
         

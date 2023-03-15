@@ -9,6 +9,7 @@ import os
 # import settings 
 from settings import *
 from sprites import *
+from random import randint
 # from pg.sprite import Sprite
 
 # set up assets folders
@@ -34,6 +35,15 @@ pewpews = pg.sprite.Group()
 
 player = Player()
 invader = Mob()
+invader.vel.x = 100
+invader.vel.y = 100
+
+for i in range(0,10):
+    m = Mob()
+    m.vel = vec(randint(8,10), randint(8,10))
+    all_sprites.add(m)
+    enemies.add(m)
+
 # testSprite = Sprite()
 # testSprite.image = pg.Surface((50,50))
 # testSprite.image.fill(GREEN)
@@ -61,7 +71,7 @@ while RUNNING:
 
     blocks_hit_list = pg.sprite.spritecollide(player, enemies, True)
     for block in blocks_hit_list:
-        # print(enemies)
+        print(enemies)
         pass
     ### draw and render section of game loop
     screen.fill(BLUE)
