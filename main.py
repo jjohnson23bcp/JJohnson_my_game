@@ -1,16 +1,20 @@
-# file created by John Johnson
+# File created by: Chris Cozort
 
-#  test ets test test etset etset etset test test test 
-
-# import libs
+# testing changes with this line...more editssss....
+# asdfasdfasdfasdfasdf;skdjf;lkasjdf;lkasjd;flkjasdf;lk
+# ;ALSKJDF;LKASJDF;KLJASD;FLKJAS;DKLFJ
+# import libraries
+# test comment for git
 import pygame as pg
 import random
 import os
-# import settings 
+# import settings
 from settings import *
 from sprites import *
 from random import randint
 # from pg.sprite import Sprite
+
+vec = pg.math.Vector2
 
 # set up assets folders
 game_folder = os.path.dirname(__file__)
@@ -21,11 +25,11 @@ def get_mouse_now():
     return (x,y)
 
 
-# init pg and create window
+# init pg and create windowo
 pg.init()
 # init sound mixer
 pg.mixer.init()
-screen = pg.display.set_mode((WIDTH, HEIGHT))
+screen = pg.display.set_mode((WIDTH, HEIGHT)) 
 pg.display.set_caption("My first game...")
 clock = pg.time.Clock() 
 
@@ -33,14 +37,16 @@ all_sprites = pg.sprite.Group()
 enemies = pg.sprite.Group()
 pewpews = pg.sprite.Group()
 
+# player is instantiated here
 player = Player()
+player.rect.x = 5
 invader = Mob()
-invader.vel.x = 100
-invader.vel.y = 100
+invader.image.fill((0,0,255))
+invader.vel = vec(randint(8,80),randint(8,80))
 
 for i in range(0,10):
     m = Mob()
-    m.vel = vec(randint(8,10), randint(8,10))
+    m.vel = vec(randint(8,80),randint(8,80))
     all_sprites.add(m)
     enemies.add(m)
 
@@ -51,7 +57,6 @@ for i in range(0,10):
 # testSprite.rect.center = (WIDTH / 2, HEIGHT / 2)
 all_sprites.add(player)
 all_sprites.add(invader)
-
 # all_sprites.add(testSprite)
 
 # game loop
@@ -69,7 +74,7 @@ while RUNNING:
     ### update section of game loop (if updates take longer the 1/30th of a second, you will get laaaaag...)
     all_sprites.update()
 
-    blocks_hit_list = pg.sprite.spritecollide(player, enemies, True)
+    blocks_hit_list = pg.sprite.spritecollide(player, enemies, False)
     for block in blocks_hit_list:
         print(enemies)
         pass
