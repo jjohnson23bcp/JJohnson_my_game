@@ -46,20 +46,14 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.enemies = pg.sprite.Group()
-        self.player = Player(self)
-        self.plat1 = Platform(WIDTH, 50, 0, HEIGHT-50, (150,150,150), "normal")
-        # self.plat1 = Platform(WIDTH, 50, 0, HEIGHT-50, (150,150,150), "normal")
-        self.all_sprites.add(self.plat1)
-
-        self.platforms.add(self.plat1)
-        
+        self.player = Player(self)        
         self.all_sprites.add(self.player)
         for plat in PLATFORM_LIST:
             p = Platform(*plat)
             self.all_sprites.add(p)
             self.platforms.add(p)
-        for i in range(0,10):
-            m = Mob(20,20,(0,255,0))
+        for i in range(0,1):
+            m = Mob(20,20,(255,255,255))
             self.all_sprites.add(m)
             self.enemies.add(m)
         self.run()
@@ -95,7 +89,7 @@ class Game:
                     self.player.vel.y = 0
 
     def draw(self):
-        self.screen.fill(BLUE)
+        self.screen.fill(BLACK)
         self.all_sprites.draw(self.screen)
         # is this a method or a function?
         pg.display.flip()

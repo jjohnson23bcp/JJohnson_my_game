@@ -14,7 +14,7 @@ class Player(Sprite):
         # these are the properties
         self.game = game
         self.image = pg.Surface((50,50))
-        self.image.fill(BLACK)
+        self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
         self.pos = vec(WIDTH/2, HEIGHT/2)
@@ -40,12 +40,12 @@ class Player(Sprite):
         #         PAUSED = False
         #         print(PAUSED)
     # ...
-    def jump(self):
-        self.rect.x += 1
-        hits = pg.sprite.spritecollide(self, self.game.platforms, False)
-        self.rect.x -= 1
-        if hits:
-            self.vel.y = -PLAYER_JUMP
+    # def jump(self):
+    #     self.rect.x += 1
+    #     hits = pg.sprite.spritecollide(self, self.game.platforms, False)
+    #     self.rect.x -= 1
+    #     if hits:
+    #         self.vel.y = -PLAYER_JUMP
     
     def inbounds(self):
         if self.rect.x > WIDTH - 50:
