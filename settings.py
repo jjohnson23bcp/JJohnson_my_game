@@ -1,9 +1,11 @@
 WIDTH = 800
 HEIGHT = 600
-PLAYER_ACC = 2
+PLAYER_VEL = 1
+PLAYER_ACC = 1
 PLAYER_FRICTION = -0.3
 PLAYER_JUMP = 20
-PLAYER_GRAV = 0.8
+PLAYER_GRAV = 0
+MOB_VEL = 3
 MOB_ACC = 2
 MOB_FRICTION = -0.3
 BLACK = (0,0,0)
@@ -16,8 +18,16 @@ SCORE = 0
 PAUSED = False
 
 # Starting platforms
-PLATFORM_LIST = [(10, 50 - 40, 60, 20, (200,200,200), "normal"),
+PLATFORM_LIST = [(10, 10, 60, 20, (200,200,200), "disappearing"),
                 #  (WIDTH / 2 - 50, HEIGHT * 3 / 4, 100, 20, (100,255,100), "bouncey"),
-                #  (125, HEIGHT - 350, 100, 5, (200,100,50), "disappearing"),
-                 (350, 200, 60, 20, (200,200,200), "normal"),
-                 (175, 100, 60, 20, (200,200,200), "normal")]
+                 (125, HEIGHT - 350, 100, 5, (200,100,50), "disappearing"),
+                 (80, 10, 60, 20, (200,200,200), "disappearing"),
+                 (150, 10, 60, 20, (200,200,200), "disappearing"),
+                 (220, 10, 60, 20, (200,200,200), "disappearing"),
+                 (290, 10, 60, 20, (200,200,200), "disappearing"),
+                 (360, 10, 60, 20, (200,200,200), "disappearing"),
+                 (430, 10, 60, 20, (200,200,200), "disappearing"),
+                 (500, 10, 60, 20, (200,200,200), "disappearing"),
+                 (570, 10, 60, 20, (200,200,200), "disappearing"),
+                 (640, 10, 60, 20, (200,200,200), "disappearing"),
+                 (710, 10, 60, 20, (200,200,200), "disappearing")]

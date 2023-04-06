@@ -36,7 +36,7 @@ class Game:
         pg.init()
         pg.mixer.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        pg.display.set_caption("my game")
+        pg.display.set_caption("Breakout")
         self.clock = pg.time.Clock()
         self.running = True
         print(self.screen)
@@ -71,12 +71,18 @@ class Game:
                 if self.playing:
                     self.playing = False
                 self.running = False
-            if event.type == pg.KEYDOWN:
-                if event.key == pg.K_SPACE:
-                    self.player.jump()
+            # if event.type == pg.KEYDOWN:
+            #     if event.key == pg.K_SPACE:
+            #         self.player.jump()
     def update(self):
         self.all_sprites.update()
-        if self.player.vel.y > 0:
+        mhits = pg.sprite.spritecollide(self.player, self.enemies, False)
+        if mhits:
+            if abs(self.player.vel.x) > abs(self.player.vel.y):
+                self.player.vel.x *= -1
+            else:
+                self.player.vel.y *= -1
+        if self.player.vel.y == 0:
             hits = pg.sprite.spritecollide(self.player, self.platforms, False)
             if hits:
                 if hits[0].variant == "disappearing":
@@ -87,6 +93,7 @@ class Game:
                 else:
                     self.player.pos.y = hits[0].rect.top
                     self.player.vel.y = 0
+        
 
     def draw(self):
         self.screen.fill(BLACK)
