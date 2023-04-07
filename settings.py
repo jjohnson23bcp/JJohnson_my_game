@@ -1,3 +1,5 @@
+# file created by John Johnson
+# game attributes
 WIDTH = 800
 HEIGHT = 600
 PLAYER_VEL = 1

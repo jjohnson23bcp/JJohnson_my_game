@@ -1,14 +1,16 @@
+# file created by John Johnson
+# import libraries
 import pygame as pg
 from pygame.sprite import Sprite
 from settings import *
 from random import randint
 
-
+# variable for vectors
 vec = pg.math.Vector2
 
 # player class
-
 class Player(Sprite):
+    # initiate player in the game
     def __init__(self, game):
         Sprite.__init__(self)
         # these are the properties
@@ -22,7 +24,9 @@ class Player(Sprite):
         self.acc = vec(0,0)
         self.cofric = 0.1
         self.canjump = False
+        # defining inputs used to control player sprite
     def input(self):
+        # if a key is pressed, move a certain way
         keystate = pg.key.get_pressed()
         # if keystate[pg.K_w]:
         #     self.acc.y = -PLAYER_ACC
@@ -42,14 +46,17 @@ class Player(Sprite):
     # ...
     def jump(self):
         self.rect.x += 1
+        # when the bottom of the sprite collides with a platform, allow the sprite to jump
         hits = pg.sprite.spritecollide(self, self.game.platforms, False)
         self.rect.x -= 1
         # if hits:
         self.vel.y = -PLAYER_JUMP
+        # function that tells where the player sprite is
     def inbounds(self):
         if self.rect.x > WIDTH - 50:
             self.pos.x = WIDTH - 25
             self.vel.x = 0
+            # if sprite is beyond certain dimensions, print where
             print("i am off the right side of the screen...")
         if self.rect.x < 0:
             self.pos.x = 25
@@ -60,19 +67,21 @@ class Player(Sprite):
         if self.rect.y < 0:
             print("i am off the top of the screen...")
     def mob_collide(self):
+        # if player collides with a mob, add to the score
         hits = pg.sprite.spritecollide(self, self.game.enemies, True)
         if hits:
             print("you collided with an enemy...")
             self.game.score += 1
             print(SCORE)
     def update(self):
+        # function which dictates the player attributes
         self.acc = vec(0, PLAYER_GRAV)
         self.acc.x = self.vel.x * PLAYER_FRICTION
         self.input()
         self.vel += self.acc
         self.pos += self.vel + 0.5 * self.acc
         self.rect.midbottom = self.pos
-        
+# same thing as the player class, but for mobs, no need for input
 class Mob(Sprite):
     def __init__(self,width,height, color):
         Sprite.__init__(self)
@@ -84,7 +93,7 @@ class Mob(Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
         self.pos = vec(WIDTH/2, HEIGHT/2)
-        self.vel = vec(randint(1,5),randint(1,5))
+        self.vel = vec(4,4)
         self.acc = vec(1,1)
         self.cofric = 0.01
     # ...
@@ -109,7 +118,6 @@ class Mob(Sprite):
         self.rect.center = self.pos
 
 # create a new platform class...
-
 class Platform(Sprite):
     def __init__(self, x, y, width, height, color, variant):
         Sprite.__init__(self)
