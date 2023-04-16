@@ -81,8 +81,8 @@ class Game:
     # responsible for changes within the game
     def update(self):
         self.all_sprites.update()
-        # if mob hits the player, reverse player velocity
-        mhits = pg.sprite.spritecollide(self.player, self.enemies, False)
+        # if platform hits the player, reverse player velocity
+        mhits = pg.sprite.spritecollide(self.player, self.platforms, False)
         if mhits:
             if abs(self.player.vel.x) > abs(self.player.vel.y):
                 self.player.vel.x *= -1

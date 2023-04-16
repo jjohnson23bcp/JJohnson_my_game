@@ -28,12 +28,12 @@ class Player(Sprite):
     def input(self):
         # if a key is pressed, move a certain way
         keystate = pg.key.get_pressed()
-        # if keystate[pg.K_w]:
-        #     self.acc.y = -PLAYER_ACC
+        if keystate[pg.K_w]:
+            self.acc.y = -PLAYER_ACC
         if keystate[pg.K_a]:
             self.acc.x = -PLAYER_ACC
-        # if keystate[pg.K_s]:
-        #     self.acc.y = PLAYER_ACC
+        if keystate[pg.K_s]:
+            self.acc.y = PLAYER_ACC
         if keystate[pg.K_d]:
             self.acc.x = PLAYER_ACC
         # if keystate[pg.K_p]:
@@ -49,8 +49,8 @@ class Player(Sprite):
         # when the bottom of the sprite collides with a platform, allow the sprite to jump
         hits = pg.sprite.spritecollide(self, self.game.platforms, False)
         self.rect.x -= 1
-        # if hits:
-        self.vel.y = -PLAYER_JUMP
+        if hits:
+            self.vel.y = -PLAYER_JUMP
         # function that tells where the player sprite is
     def inbounds(self):
         if self.rect.x > WIDTH - 50:
@@ -70,6 +70,7 @@ class Player(Sprite):
         # if player collides with a mob, add to the score
         hits = pg.sprite.spritecollide(self, self.game.enemies, True)
         if hits:
+            self.vel *= -1
             print("you collided with an enemy...")
             self.game.score += 1
             print(SCORE)
