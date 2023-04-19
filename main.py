@@ -1,17 +1,8 @@
 # File created by John Johnson
 '''
-My goal is:
-
-Atari Breakout 
 Main Goal:
 Ball that bounces off the blocks at the top of the screen and makes them disappear
-Other Goals:
-Platform at bottom of screen which player controls and the ball can bounce off
-Ball increases in velocity when it collides with the top layer of platforms
-Ball can collide with the walls and ceiling, but not floor
-If ball goes through the floor, reset the ball
-Limited number of times the ball can be reset
-Keep score for platforms hit
+
 '''
 # Sources: http://kidscancode.org/blog/2016/08/pygame_1-1_getting-started/
 # Sources: 
@@ -86,6 +77,7 @@ class Game:
         if mhits:
             if abs(self.player.vel.x) > abs(self.player.vel.y):
                 self.player.vel.x *= -1
+
             else:
                 self.player.vel.y *= -1
         # if player collides with a certain type of platform, either the platform disappears or the player bounces
