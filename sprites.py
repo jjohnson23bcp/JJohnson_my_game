@@ -68,7 +68,7 @@ class Player(Sprite):
             print("i am off the top of the screen...")
     def mob_collide(self):
         # if player collides with a mob, add to the score
-        hits = pg.sprite.spritecollide(self, self.game.enemies, True)
+        hits = pg.sprite.spritecollide(self.game.player, self.game.enemies, True)
         if hits:
             self.vel *= -1
             print("you collided with an enemy...")
@@ -97,6 +97,13 @@ class Mob(Sprite):
         self.vel = vec(4,4)
         self.acc = vec(1,1)
         self.cofric = 0.01
+    def player_collide(self):
+        # if player collides with a mob, add to the score
+        phits = pg.sprite.spritecollide(self.game.enemies, self.game.platforms, True)
+        if phits:
+            self.vel *= -1
+            print("you collided with an enemy...")
+
     # ...
     def inbounds(self):
         if self.rect.x > WIDTH:
